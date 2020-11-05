@@ -1,0 +1,63 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+    </qresource>
+    <qresource prefix="/controls">
+        <file>DateTimePicker.qml</file>
+        <file>ImageButton.qml</file>
+        <file>MenuButton.qml</file>
+        <file>MyButton.qml</file>
+        <file>MyButton2.qml</file>
+        <file>MyButton3.qml</file>
+        <file>MyButton4.qml</file>
+        <file>MyButton5.qml</file>
+        <file>MyComboBox.qml</file>
+        <file>MyImage.qml</file>
+        <file>MySwitch.qml</file>
+        <file>RecButton.qml</file>
+        <file>SwitchPage.qml</file>
+        <file>Test.qml</file>
+        <file>TextButton.qml</file>
+        <file>TextFieldAddr.qml</file>
+        <file>TextFieldComboBox.qml</file>
+        <file>TextFieldEye.qml</file>
+        <file>TextFieldLine.qml</file>
+        <file>TokenComboBox.qml</file>
+    </qresource>
+    <qresource prefix="/models">
+        <file>API.js</file>
+        <file>DataLoader.mjs</file>
+        <file>ViolasServer.qml</file>
+    </qresource>
+    <qresource prefix="/pages">
+        <file>AddAddrPage.qml</file>
+        <file>AddCoinPage.qml</file>
+        <file>AddrBookPage.qml</file>
+        <file>BackupMnemonicPage.qml</file>
+        <file>BankPage.qml</file>
+        <file>BorrowOrderPage.qml</file>
+        <file>BorrowPage.qml</file>
+        <file>BusyPage.qml</file>
+        <file>ChangePage.qml</file>
+        <file>CoinDetailPage.qml</file>
+        <file>ConfirmMnemonicPage.qml</file>
+        <file>DepositOrderPage.qml</file>
+        <file>DepositPage.qml</file>
+        <file>EnterPasswordPage.qml</file>
+        <file>ExchangePage.qml</file>
+        <file>GetMnemonicPage.qml</file>
+        <file>ImportPage.qml</file>
+        <file>MarketPage.qml</file>
+        <file>MyPage.qml</file>
+        <file>PoolPage.qml</file>
+        <file>PyPayPage.qml</file>
+        <file>ReceivePage.qml</file>
+        <file>RepaymentPage.qml</file>
+        <file>SendPage.qml</file>
+        <file>SetPasswordPage.qml</file>
+        <file>TransactionDetailPage.qml</file>
+        <file>WalletManagePage.qml</file>
+        <file>WalletPage.qml</file>
+    </qresource>
+</RCC>
+
