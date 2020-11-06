@@ -18,10 +18,10 @@ A 'Dockerfile' file is provided to build Linux and Windows binaries.
 
 ### Build static release on Linux
 ```
-docker run -v $PWD:/vpay doubledog/vpay:init /bin/sh -c "cd /vpay && ./tools/buildvpay.sh linux && cp /docker_bld_root/build-linux-gcc/VPay /vpay/VPay"
+docker run -v $PWD:/vpay doubledog/vpay:build /bin/sh -c "cd /vpay && ./tools/buildvpay.sh linux && cp /docker_bld_root/build-linux-gcc/VPay /vpay/VPay"
 ```
 
 ### Build static release on Linux for Windows
 ```
-docker run -v $PWD:/vpay doubledog/vpay:init /bin/sh -c "cd /vpay && ./tools/buildvpay.sh windows && cp build-mingw-w64/release/VPay.exe /vpay/VPay.exe"
+docker run -v $PWD:/vpay doubledog/vpay:build /bin/sh -c "cd /vpay && ./tools/buildvpay.sh windows && cp build-mingw-w64/release/VPay.exe /vpay/VPay.exe"
 ```
