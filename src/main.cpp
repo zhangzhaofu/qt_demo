@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 
     // Reset the locale that is used for number formatting, see:
     // https://doc.qt.io/qt-5/qcoreapplication.html#locale-settings
-    setlocale(LC_NUMERIC, "C");
+    //setlocale(LC_NUMERIC, "C");
 
     const auto id = QFontDatabase::addApplicationFont(":/fonts/DINPro/DINPro-Regular.otf");
     Q_ASSERT(id >= 0);
