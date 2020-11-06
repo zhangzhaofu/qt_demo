@@ -1,4 +1,11 @@
 <RCC>
+    <qresource prefix="/fonts">
+        <file>DINPro/DINPro-Medium.otf</file>
+        <file>DINPro/DINPro-Bold.otf</file>
+        <file>DINPro/DINPro-Black.otf</file>
+        <file>DINPro/DINPro-Regular.otf</file>
+        <file>DINPro/DINPro-Light.otf</file>
+    </qresource>
     <qresource prefix="/icons">
         <file>add.svg</file>
         <file>addAddr.svg</file>
