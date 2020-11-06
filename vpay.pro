@@ -23,13 +23,12 @@ QML_IMPORT_MINOR_VERSION = 1
 
 QT += qml quick quickcontrols2 svg
 
-CONFIG += c++11 metatypes qmltypes qtquickcompiler
+#CONFIG += c++11 metatypes qmltypes qtquickcompiler
+CONFIG += c++11
 
 CONFIG += qzxing_qml qzxing_multimedia enable_decoder_qr_code enable_encoder_qr_code
 
-!defined(QZXING_PATH, var): error(Run qmake with QZXING_PATH set. See BUILD.md for more details.)
-
-include($${QZXING_PATH}/src/QZXing-components.pri)
+include(qzxing/src/QZXing-components.pri)
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings

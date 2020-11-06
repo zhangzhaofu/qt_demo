@@ -6,11 +6,10 @@ set -eo pipefail
 ./tools/builddeps.sh $1 $2
 
 CURRENTDIR=${PWD}
-QZXING_PATH=${BUILDROOT}/qzxing
 
 cd ${BUILDROOT}
 
-QMAKE_CONFIG="CONFIG+=release CONFIG+=qml_release CONFIG+=static QZXING_PATH=${QZXING_PATH}"
+QMAKE_CONFIG="CONFIG+=release CONFIG+=qml_release CONFIG+=static"
 
 if [ "${SYMBOLS}" != "" ]; then
     QMAKE_CONFIG+=" QMAKE_CXXFLAGS+=-g"
