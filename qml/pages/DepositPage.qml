@@ -3,9 +3,6 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 
 import "../controls"
-import "../pages"
-
-import PyPay 1.0
 
 PyPayPage {
     id: root
@@ -15,11 +12,11 @@ PyPayPage {
 
     Component.onCompleted: {
         startBusy()
-        var params = { "id": server.requestID, "address": payController.addr }
-        server.getViolasBankDepositInfo(params, function() { 
-            for (var i = 0; i < server.balances.length; i++) {
-                if (server.bankDepositInfo.token_show_name == server.balances[i].show_name) {
-                    tokenBalance = server.balances[i][server.bankDepositInfo.token_show_name]
+        var params = { "id": server.id_requested_bank, "address": server.address_violas }
+        server.get_deposit_bank(params, function() { 
+            for (var i = 0; i < server.balances_violas.length; i++) {
+                if (server.deposit_bank.token_show_name == server.balances_violas[i].show_name) {
+                    tokenBalance = server.balances_violas[i][server.deposit_bank.token_show_name]
                 }
             }
             stopBusy()
@@ -62,11 +59,11 @@ PyPayPage {
                     anchors.right: tokenText.left
                     anchors.rightMargin: 8
                     anchors.verticalCenter: storeText.verticalCenter
-                    placeholderText: qsTr("minimum_amount: ") + (server.bankDepositInfo.minimum_amount / 1000000).toFixed(6) + ",  " + qsTr("minimum_step: ") + (server.bankDepositInfo.minimum_step / 1000000).toFixed(6)
+                    placeholderText: qsTr("minimum_amount: ") + (server.deposit_bank.minimum_amount / 1000000).toFixed(6) + ",  " + qsTr("minimum_step: ") + (server.deposit_bank.minimum_step / 1000000).toFixed(6)
                 }
                 Text {
                     id: tokenText
-                    text: server.bankDepositInfo.token_show_name
+                    text: server.deposit_bank.token_show_name
                     anchors.right: parent.right
                     anchors.rightMargin: 50
                     anchors.verticalCenter: storeText.verticalCenter
@@ -117,7 +114,7 @@ PyPayPage {
                         source: "../icons/limitbank.svg"
                     }
                     Text {
-                        text: qsTr("limit of day: ") + (server.bankDepositInfo.quota_limit / 1000000).toFixed(6)
+                        text: qsTr("limit of day: ") + (server.deposit_bank.quota_limit / 1000000).toFixed(6)
                         font.pointSize: 12
                         color: "#5C5C5C"
                         anchors.verticalCenter: limitImage.verticalCenter
@@ -142,7 +139,7 @@ PyPayPage {
                 }
                 Text {
                     id: rateText2
-                    text: server.bankDepositInfo.rate * 100 + "%"
+                    text: server.deposit_bank.rate * 100 + "%"
                     anchors.verticalCenter: rateText.verticalCenter
                     anchors.right: parent.right
                     anchors.rightMargin: 50
@@ -174,7 +171,7 @@ PyPayPage {
                 Text {
                     anchors.right: rateText2.right
                     anchors.verticalCenter: con2Column.verticalCenter
-                    text: server.bankDepositInfo.pledge_rate * 100 + "%"
+                    text: server.deposit_bank.pledge_rate * 100 + "%"
                 }
                 Rectangle {
                     id: con2Line2
@@ -295,7 +292,7 @@ PyPayPage {
                     anchors.topMargin: 32
                     spacing: 8
                     Repeater {
-                        model: intorRec.isShowMore ? server.intorModel : 0
+                        model: intorRec.isShowMore ? server.model_intors : 0
                         Text {
                             text: title + "  "  + content
                         }
@@ -346,7 +343,7 @@ PyPayPage {
                     anchors.topMargin: 32
                     spacing: 8
                     Repeater {
-                        model: questionRec.isShowMore ? server.questionModel : 0
+                        model: questionRec.isShowMore ? server.model_questions : 0
                         Column {
                             spacing: 16
                             Text {

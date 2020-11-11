@@ -4,8 +4,6 @@ import QtQuick.Layouts 1.15
 
 import "../controls"
 
-import PyPay 1.0
-
 Control {
     padding: 8
 
@@ -44,7 +42,7 @@ Control {
             anchors.right: parent.right
             anchors.rightMargin: 8
             anchors.bottom: parent.bottom
-            model: server.tokenModel
+            model: server.model_currencies
             spacing: 12
             clip: true
             ScrollIndicator.vertical: ScrollIndicator { }
@@ -73,10 +71,19 @@ Control {
                 MySwitch {
                     anchors.right: parent.right
                     anchors.verticalCenter: parent.verticalCenter
+                    visible: show_name != "BTC" && show_name != "LBR" && show_name != "VLS"
                     checkable: true
-                    checked: published.includes(show_name)
+                    checked: appWindow.currencies_show.includes(show_name)
                     onClicked: {
-                        //payController.updateTokenShow(tokenEntry.chain, tokenEntry.name, tokenEntry.isShow)
+                        if (appWindow.currencies_show.includes(show_name)) {
+                            appWindow.currencies_show.splice(appWindow.currencies_show.indexOf(show_name), 1)
+                        } else {
+                            appWindow.currencies_show.push(show_name)
+                            if (!server.currencies_published.includes(show_name)) {
+                                //payController.publish_currency(chain, name)
+                            }
+                        }
+                        server.update_model_tokens()
                     }
                 }
             }

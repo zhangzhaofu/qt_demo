@@ -1,9 +1,8 @@
 import QtQuick 2.15
-import QtQuick.Controls 2.15
+import QtQuick.Controls 2.5
+import QtQuick.Layouts 1.15
 
 import "../controls"
-
-import PyPay 1.0
 
 Page {
     id: root
@@ -15,30 +14,6 @@ Page {
     signal sendClicked
     signal receiveClicked
     signal exchangeClicked
-
-    function getRate(token) {
-        if (token.includes('VLS')) {
-            return rates[token.substr(3)]
-        } else {
-            return 0
-        }
-    }
-
-    function getTokenBalance() {
-        if (payController.addr) {
-            var msg = {'action':'getBalances', 'model':tokenModel, 'libraAddr': payController.libra_addr, 'violasAddr': payController.addr};
-            worker.sendMessage(msg);
-        }
-    }
-
-    WorkerScript {
-        id: worker
-        source: "../models/DataLoader.mjs"
-    }
-
-    Component.onCompleted: {
-        server.getRate()
-    }
 
     background: Rectangle {
         color: "#F7F7F9"
@@ -82,7 +57,7 @@ Page {
             anchors.top: totalText.bottom
             anchors.topMargin: 20
             anchors.left: totalText.left
-            text: appSettings.eyeIsOpen ? qsTr("$ ") + payController.totalBalance : "******"
+            text: appSettings.eyeIsOpen ? qsTr("$ ") + server.value_total : "******"
             font.pointSize: 20
             color: "#FFFFFF"
         }
@@ -100,7 +75,7 @@ Page {
                 anchors.fill: parent
                 onClicked: {
                     sendClicked()
-                    payController.currentSelectedAddr = ""
+                    //payController.currentSelectedAddr = ""
                 }
             }
         }
@@ -193,10 +168,6 @@ Page {
             visible: !appSettings.walletIsCreate
         }
 
-        ListModel {
-            id: tokenModel
-        }
-
         // Token list
         ListView {
             id: walletListView
@@ -207,16 +178,17 @@ Page {
             anchors.right: parent.right
             anchors.rightMargin: 20
             anchors.bottom: parent.bottom
-            model: tokenModel
-            visible: tokenModel.count
+            model: server.model_tokens
+            visible: server.model_tokens.count
             spacing: 12
             clip: true
             ScrollIndicator.vertical: ScrollIndicator { }
             delegate: Rectangle {
                 width: walletListView.width
-                height: 60
+                height: appWindow.currencies_show.includes(show_name) ? 60 : -12
                 color: "#EBEBF1"
                 radius: 14
+                visible: appWindow.currencies_show.includes(show_name)
                 MyImage {
                     id: itemImage
                     source: show_icon
@@ -240,14 +212,13 @@ Page {
                     anchors.verticalCenter: parent.verticalCenter
                     Text {
                         id: amountText
-                        text: appSettings.eyeIsOpen ? (balance / 1000000).toFixed(6) : "******"
+                        text: appSettings.eyeIsOpen ? server.format_balance(chain, balance) : "******"
                         color: "#333333"
                         font.pointSize: 16
                         anchors.right: parent.right
                     }
                     Text {
-                        //text: appSettings.eyeIsOpen ? "≈$" + getRate(show_name) * (balance / 1000000) : "******"
-                        text: appSettings.eyeIsOpen ? "≈$" + getRate('USD') * (balance / 1000000) : "******"
+                        text: appSettings.eyeIsOpen ? "≈$" + server.get_rate(chain, show_name) * server.format_balance(chain, balance) : "******"
                         color: "#ADADAD"
                         font.pointSize: 12
                         anchors.right: amountText.right
@@ -256,13 +227,12 @@ Page {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        payController.currentTokenEntry = tokenEntry
-                        if (tokenEntry.chain == 'libra') {
-                            payController.requestLBRHistory(tokenEntry.addr, tokenEntry.name, -1, 0, 100)
-                        } else if (tokenEntry.chain == 'violas') {
-                            payController.requestVLSHistory(tokenEntry.addr, tokenEntry.name, -1, 0, 100)
-                        } else {
-                            console.log("invalid")
+                        server.token_requested_wallet = {
+                            'chain': chain,
+                            'name': name,
+                            'show_icon': show_icon,
+                            'show_name': show_name,
+                            'balance': balance
                         }
                         coinDetailPage.open()
                     }

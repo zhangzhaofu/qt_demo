@@ -21,8 +21,7 @@
         <file>controls/TextFieldEye.qml</file>
         <file>controls/TextFieldLine.qml</file>
         <file>controls/TokenComboBox.qml</file>
-        <file>models/API.js</file>
-        <file>models/DataLoader.mjs</file>
+        <file>models/ViolasWorkerScript.mjs</file>
         <file>models/ViolasServer.qml</file>
         <file>pages/AddAddrPage.qml</file>
         <file>pages/AddCoinPage.qml</file>

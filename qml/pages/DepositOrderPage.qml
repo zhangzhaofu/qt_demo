@@ -3,9 +3,6 @@ import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.15
 
 import "../controls"
-import "../pages"
-
-import PyPay 1.0
 
 PyPayPage {
     id: root
@@ -14,9 +11,9 @@ PyPayPage {
 
     Component.onCompleted: {
         startBusy()
-        var params = { "address": payController.addr, "offset": 0, "limit": 10 }
-        server.getViolasBankDepositOrders(params, function() {
-            var count =  server.currentDepositModel.count == 0 ? 0 : server.currentDepositModel.get(0).total_count
+        var params = { "address": server.address_violas, "offset": 0, "limit": 10 }
+        server.get_orders_deposit(params, function() {
+            var count =  server.model_orders_deposit.count == 0 ? 0 : server.model_orders_deposit.get(0).total_count
             var numOfPerPage = currentDepositSwitchPage.numOfPerPage
             for (var i = 0; i <  count / numOfPerPage; i++) {
                 currentDepositSwitchPage.listModel.append({index: i})
@@ -74,11 +71,11 @@ PyPayPage {
                     color: "#FFFFFF"
                 }
                 onToggled: {
-                    if (server.depositDetailModel.count == 0) {
+                    if (server.model_details_order_deposit.count == 0) {
                         startBusy()
-                        var params = { "address": payController.addr, "offset": 0, "limit": 10 }
-                        server.getViolasBankDepositOrderList(params, function() {
-                            var count =  server.depositDetailModel.count == 0 ? 0 : server.depositDetailModel.get(0).total_count
+                        var params = { "address": server.address_violas, "offset": 0, "limit": 10 }
+                        server.get_details_order_deposit(params, function() {
+                            var count =  server.model_details_order_deposit.count == 0 ? 0 : server.model_details_order_deposit.get(0).total_count
                             var numOfPerPage = depositDetailSwitchPage.numOfPerPage
                             for (var i = 0; i <  count / numOfPerPage; i++) {
                                 depositDetailSwitchPage.listModel.append({index: i})
@@ -111,7 +108,7 @@ PyPayPage {
 
             ListView {
                 id: currentDepositView
-                model: server.currentDepositModel
+                model: server.model_orders_deposit
                 spacing: 12
                 clip: true
                 ScrollIndicator.vertical: ScrollIndicator { }
@@ -297,7 +294,7 @@ PyPayPage {
 
             ListView {
                 id: depositDetailView
-                model: server.depositDetailModel
+                model: server.model_details_order_deposit
                 spacing: 12
                 clip: true
                 ScrollIndicator.vertical: ScrollIndicator { }
@@ -441,9 +438,9 @@ PyPayPage {
             visible: tabBar.currentIndex == 0 && listModel.count != 0
             onPageClicked: {
                 startBusy()
-                var params = { "address": payController.addr, "offset": index * numOfPerPage, "limit": numOfPerPage }
-                server.getViolasBankDepositOrders(params, function() {
-                    var count =  server.currentDepositModel.count == 0 ? 0 : server.currentDepositModel.get(0).total_count
+                var params = { "address": server.address_violas, "offset": index * numOfPerPage, "limit": numOfPerPage }
+                server.get_orders_deposit(params, function() {
+                    var count =  server.model_orders_deposit.count == 0 ? 0 : server.model_orders_deposit.get(0).total_count
                     listModel.clear()
                     for (var i = 0; i <  count / numOfPerPage; i++) {
                         listModel.append({index: i})
@@ -461,9 +458,9 @@ PyPayPage {
             visible: tabBar.currentIndex == 1 && listModel.count != 0
             onPageClicked: {
                 startBusy()
-                var params = { "address": payController.addr, "offset": index * numOfPerPage, "limit": numOfPerPage }
-                server.getViolasBankDepositOrderList(params, function() {
-                    var count =  server.depositDetailModel.count == 0 ? 0 : server.depositDetailModel.get(0).total_count;
+                var params = { "address": server.address_violas, "offset": index * numOfPerPage, "limit": numOfPerPage }
+                server.get_details_order_deposit(params, function() {
+                    var count =  server.model_details_order_deposit.count == 0 ? 0 : server.model_details_order_deposit.get(0).total_count;
                     listModel.clear()
                     for (var i = listModel.count; i <  count / numOfPerPage; i++) {
                         listModel.append({index: i})
@@ -475,7 +472,7 @@ PyPayPage {
 
 
         Column {
-            visible: tabBar.currentIndex == 0 ? server.currentDepositModel.count == 0 : server.depositDetailModel.count == 0
+            visible: tabBar.currentIndex == 0 ? server.model_orders_deposit.count == 0 : server.model_details_order_deposit.count == 0
             anchors.centerIn: parent
             spacing: 8
             Image {

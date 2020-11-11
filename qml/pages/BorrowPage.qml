@@ -3,9 +3,6 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 
 import "../controls"
-import "../pages"
-
-import PyPay 1.0
 
 PyPayPage {
     id: root
@@ -14,9 +11,9 @@ PyPayPage {
 
     Component.onCompleted: {
         startBusy()
-        var params = { "id": server.requestID, "address": payController.addr }
-        server.getViolasBankBorrowInfo(params, function() { 
-            payController.request_violas_bank_max_borrow_amount(server.bankBorrowInfo.token_module)
+        var params = { "id": server.id_requested_bank, "address": server.address_violas }
+        server.get_borrow_bank(params, function() { 
+            //payController.request_violas_bank_max_borrow_amount(server.borrow_bank.token_module)
             stopBusy()
         })
     }
@@ -58,14 +55,14 @@ PyPayPage {
                     anchors.rightMargin: 8
                     anchors.verticalCenter: borrowText.verticalCenter
                     placeholderText: qsTr("minimum_amount: ") + 
-                        (server.bankBorrowInfo.minimum_amount / 1000000).toFixed(6) + 
+                        (server.borrow_bank.minimum_amount / 1000000).toFixed(6) + 
                         ",  " + 
                         qsTr("minimum_step: ") + 
-                        (server.bankBorrowInfo.minimum_step / 1000000).toFixed(6)
+                        (server.borrow_bank.minimum_step / 1000000).toFixed(6)
                 }
                 Text {
                     id: tokenText
-                    text: server.bankBorrowInfo.token_show_name
+                    text: server.borrow_bank.token_show_name
                     anchors.right: parent.right
                     anchors.rightMargin: 50
                     anchors.verticalCenter: borrowText.verticalCenter
@@ -83,7 +80,7 @@ PyPayPage {
                         source: "../icons/availablebank.svg"
                     }
                     Text {
-                        text: qsTr("avaliable borrow: ") + (payController.violas_bank_max_borrow_amount / 1000000).toFixed(6)
+                        //text: qsTr("avaliable borrow: ") + (payController.violas_bank_max_borrow_amount / 1000000).toFixed(6)
                         font.pointSize: 12
                         color: "#5C5C5C"
                         anchors.verticalCenter: avaImage.verticalCenter
@@ -119,7 +116,7 @@ PyPayPage {
                 }
                 Text {
                     id: rateText2
-                    text: server.bankBorrowInfo.rate * 100 + "%" + "/" + qsTr("Day")
+                    text: server.borrow_bank.rate * 100 + "%" + "/" + qsTr("Day")
                     anchors.verticalCenter: rateText.verticalCenter
                     anchors.right: parent.right
                     anchors.rightMargin: 50
@@ -151,7 +148,7 @@ PyPayPage {
                 Text {
                     anchors.right: rateText2.right
                     anchors.verticalCenter: con2Column.verticalCenter
-                    text: server.bankBorrowInfo.pledge_rate * 100 + "%"
+                    text: server.borrow_bank.pledge_rate * 100 + "%"
                 }
                 Rectangle {
                     id: con2Line2
@@ -211,7 +208,7 @@ PyPayPage {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        payController.openUrl("https://violas.io")
+                        server.openUrl("https://violas.io")
                     }
                 }
             }
@@ -312,7 +309,7 @@ PyPayPage {
                     anchors.topMargin: 32
                     spacing: 8
                     Repeater {
-                        model: intorRec.isShowMore ? server.intorModel : 0
+                        model: intorRec.isShowMore ? server.model_intors : 0
                         Text {
                             text: title + "  "  + content
                         }
@@ -363,7 +360,7 @@ PyPayPage {
                     anchors.topMargin: 32
                     spacing: 8
                     Repeater {
-                        model: questionRec.isShowMore ? server.questionModel : 0
+                        model: questionRec.isShowMore ? server.model_questions : 0
                         Column {
                             spacing: 16
                             Text {
