@@ -5,68 +5,6 @@
         <file>fonts/DINPro/DINPro-Black.otf</file>
         <file>fonts/DINPro/DINPro-Regular.otf</file>
         <file>fonts/DINPro/DINPro-Light.otf</file>
-        <file>icons/add.svg</file>
-        <file>icons/addAddr.svg</file>
-        <file>icons/arrow_down.svg</file>
-        <file>icons/arrow_right.svg</file>
-        <file>icons/availablebalance.svg</file>
-        <file>icons/availablebank.svg</file>
-        <file>icons/backarrow.svg</file>
-        <file>icons/backarrow2.svg</file>
-        <file>icons/backarrow3.svg</file>
-        <file>icons/bank.svg</file>
-        <file>icons/bank_no_data.svg</file>
-        <file>icons/bitcoin.svg</file>
-        <file>icons/borrow.svg</file>
-        <file>icons/borrow_order.svg</file>
-        <file>icons/bottomarrow.svg</file>
-        <file>icons/change.svg</file>
-        <file>icons/coindetailbackground.svg</file>
-        <file>icons/copy.svg</file>
-        <file>icons/deposit_order.svg</file>
-        <file>icons/exclMark.png</file>
-        <file>icons/eye_close.svg</file>
-        <file>icons/eye_open.svg</file>
-        <file>icons/eyes_close.svg</file>
-        <file>icons/eyes_open.svg</file>
-        <file>icons/head_bitcoin.png</file>
-        <file>icons/help.svg</file>
-        <file>icons/history.svg</file>
-        <file>icons/income.png</file>
-        <file>icons/income.svg</file>
-        <file>icons/lastdayincome.svg</file>
-        <file>icons/libra.svg</file>
-        <file>icons/limitbank.svg</file>
-        <file>icons/logo.svg</file>
-        <file>icons/mapping.svg</file>
-        <file>icons/marketicon.svg</file>
-        <file>icons/me.svg</file>
-        <file>icons/menubuttonbackground.svg</file>
-        <file>icons/mne_image.svg</file>
-        <file>icons/more.svg</file>
-        <file>icons/nopicture.svg</file>
-        <file>icons/nowallet.svg</file>
-        <file>icons/pageLeft.png</file>
-        <file>icons/pageLeft.svg</file>
-        <file>icons/pageRight.png</file>
-        <file>icons/pageRight.svg</file>
         <file>icons/vpay.png</file>
-        <file>icons/qrcode.png</file>
-        <file>icons/quesMark.png</file>
-        <file>icons/quit.svg</file>
-        <file>icons/receive.svg</file>
-        <file>icons/send.svg</file>
-        <file>icons/tsswitch.svg</file>
-        <file>icons/tsswitch_pressed.svg</file>
-        <file>icons/violas.svg</file>
-        <file>icons/wallet.png</file>
-        <file>icons/wallet.svg</file>
-        <file>icons/walletbackground.svg</file>
-        <file>icons/walleticon.svg</file>
-        <file>icons/warning_background.svg</file>
-        <file>icons/warning_icon.svg</file>
-        <file>icons/whitebackground.svg</file>
-        <file>icons/xuanze-2.svg</file>
-        <file>icons/xuanze.svg</file>
     </qresource>
 </RCC>

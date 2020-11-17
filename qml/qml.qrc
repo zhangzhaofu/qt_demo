@@ -1,57 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>controls/DateTimePicker.qml</file>
-        <file>controls/ImageButton.qml</file>
-        <file>controls/MenuButton.qml</file>
-        <file>controls/MyButton.qml</file>
-        <file>controls/MyButton2.qml</file>
-        <file>controls/MyButton3.qml</file>
-        <file>controls/MyButton4.qml</file>
-        <file>controls/MyButton5.qml</file>
-        <file>controls/MyComboBox.qml</file>
-        <file>controls/MyImage.qml</file>
-        <file>controls/MySwitch.qml</file>
-        <file>controls/RecButton.qml</file>
-        <file>controls/SwitchPage.qml</file>
-        <file>controls/Test.qml</file>
-        <file>controls/TextButton.qml</file>
-        <file>controls/TextFieldAddr.qml</file>
-        <file>controls/TextFieldComboBox.qml</file>
-        <file>controls/TextFieldEye.qml</file>
-        <file>controls/TextFieldLine.qml</file>
-        <file>controls/TokenComboBox.qml</file>
-        <file>models/API.js</file>
-        <file>models/DataLoader.mjs</file>
-        <file>models/ViolasServer.qml</file>
-        <file>pages/AddAddrPage.qml</file>
-        <file>pages/AddCoinPage.qml</file>
-        <file>pages/AddrBookPage.qml</file>
-        <file>pages/BackupMnemonicPage.qml</file>
-        <file>pages/BankPage.qml</file>
-        <file>pages/BorrowOrderPage.qml</file>
-        <file>pages/BorrowPage.qml</file>
-        <file>pages/BusyPage.qml</file>
-        <file>pages/ChangePage.qml</file>
-        <file>pages/CoinDetailPage.qml</file>
-        <file>pages/ConfirmMnemonicPage.qml</file>
-        <file>pages/DepositOrderPage.qml</file>
-        <file>pages/DepositPage.qml</file>
-        <file>pages/EnterPasswordPage.qml</file>
-        <file>pages/ExchangePage.qml</file>
-        <file>pages/GetMnemonicPage.qml</file>
-        <file>pages/ImportPage.qml</file>
-        <file>pages/MarketPage.qml</file>
-        <file>pages/MyPage.qml</file>
-        <file>pages/PoolPage.qml</file>
-        <file>pages/PyPayPage.qml</file>
-        <file>pages/ReceivePage.qml</file>
-        <file>pages/RepaymentPage.qml</file>
-        <file>pages/SendPage.qml</file>
-        <file>pages/SetPasswordPage.qml</file>
-        <file>pages/TransactionDetailPage.qml</file>
-        <file>pages/WalletManagePage.qml</file>
-        <file>pages/WalletPage.qml</file>
     </qresource>
 </RCC>
 
