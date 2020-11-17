@@ -11,10 +11,10 @@ ApplicationWindow {
     minimumWidth: 960
     minimumHeight: 540
     visible: true
-    title: qsTr("Desktop Pay Wallet")
+    title: qsTr("Desktop app")
 
-    WebView {
-        anchors.fill: parent
-        url: "http://wallet.violas.io"
+    Text {
+        anchors.centerIn: parent
+        text: qsTr("It just test for static build for desktop")
     }
 }
